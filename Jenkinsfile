@@ -9,11 +9,11 @@ pipeline {
         COSIGN_PUBLIC_KEY=credentials('my-cosign-public-key')
     }
     stages {
-        // stage('Cleaning up') {
-        //     steps {
-        //         sh 'docker system prune -a --volumes --force'
-        //     }
-        // }
+        stage('Cleaning up') {
+            steps {
+                sh 'docker system prune -a --volumes --force'
+            }
+        }
         stage('Building Docker image') {
             steps {
                 sh 'docker build -t $IMAGE_NAME:$IMAGE_VERSION .'
@@ -29,14 +29,14 @@ pipeline {
                 sh 'docker tag $IMAGE_NAME:$IMAGE_VERSION ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
             }
         }
-        stage('Sign Docker image') {
-            steps {
-                sh 'cosign sign --key $COSIGN_PRIVATE_KEY ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
-            }
-        }
         stage('Push Docker image') {
             steps {
                 sh 'docker push ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
+            }
+        }
+        stage('Sign Docker image') {
+            steps {
+                sh 'cosign sign --key $COSIGN_PRIVATE_KEY ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
             }
         }
         stage('Verify Docker image') {
