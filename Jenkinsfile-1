@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+    environment {
+        IMAGE_NAME='val7117/vkr-project'
+        IMAGE_VERSION='0.0.1'
+        COSIGN_PUBLIC_KEY=credentials('my-cosign-public-key')
+    }
+    stages {
+        stage('Verify Docker image') {
+            steps {
+                sh 'cosign verify --key $COSIGN_PUBLIC_KEY ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
+            }
+        }
+    }
+}
