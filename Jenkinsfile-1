@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Verify Docker image') {
             steps {
-                sh 'cosign verify --key $COSIGN_PUBLIC_KEY ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
+                sh 'cosign verify --key ghcr.io/val7117/vkr-project:sha256-04afc38518ac19283dc0fde598daf526a777dd1620afc46d7464c5a369e838bc.sig'
             }
         }
     }
