@@ -34,7 +34,9 @@ pipeline {
             }
         }
         stage('Sign Docker image') {
-            sh 'cosign sign --key $COSIGN_PRIVATE_KEY ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
+            steps {
+                sh 'cosign sign --key $COSIGN_PRIVATE_KEY ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
+            }
         }
     }
     post {
