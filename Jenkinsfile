@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         GITHUB_TOKEN=credentials('my-github-token')
-        IMAGE_NAME='Val7117/vkr-project'
+        IMAGE_NAME='val7117/vkr-project'
         IMAGE_VERSION='0.0.1'
     }
     stages {
