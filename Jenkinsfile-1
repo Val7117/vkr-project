@@ -1,11 +1,22 @@
 pipeline {
     agent any
     environment {
+        GITHUB_TOKEN=credentials('my-github-token')
         IMAGE_NAME='val7117/vkr-project'
         IMAGE_VERSION='0.0.1'
         COSIGN_PUBLIC_KEY=credentials('my-cosign-public-key')
     }
     stages {
+         stage('Login to GitHub Container Registry') {
+            steps {
+                sh 'echo $GITHUB_TOKEN_PSW | docker login ghcr.io -u $GITHUB_TOKEN_USR --password-stdin'
+            }
+        }
+        stage('Pulling from github ') {
+            steps {
+                sh 'docker pull ghcr.io/val7117/vkr-project:sha256-04afc38518ac19283dc0fde598daf526a777dd1620afc46d7464c5a369e838bc.sig'
+            }
+        }
         stage('Verify Docker image') {
             steps {
                 sh 'cosign verify --key $COSIGN_PUBLIC_KEY ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
