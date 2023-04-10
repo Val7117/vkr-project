@@ -2,16 +2,16 @@ pipeline {
     agent any
     environment {
         GITHUB_TOKEN=credentials('my-github-token')
-        IMAGE_NAME='hi-itmo'
+        IMAGE_NAME='Val7117/vkr-project'
         IMAGE_VERSION='0.0.1'
     }
     stages {
-        stage('Cleaning up ...') {
+        stage('Cleaning up') {
             steps {
                 sh 'docker system prune -a --volumes --force'
             }
         }
-        stage('Building Docker image ...') {
+        stage('Building Docker image') {
             steps {
                 sh 'docker build -t $IMAGE_NAME:$IMAGE_VERSION .'
             }
