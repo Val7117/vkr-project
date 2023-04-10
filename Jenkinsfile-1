@@ -1,9 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage ('test') {
+        stage ('Test') {
             steps {
                 sh 'echo "Hi, ITMO!"'
+            }
+        }
+        stage ('Building Docker-image ...') {
+            steps {
+                sh 'docker build -t hi-itmo:0.1 .'
             }
         }
     }
