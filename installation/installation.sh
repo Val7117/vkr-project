@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# This is a script to install Docker on the machine
-
+# This is an installation scipt for Jenking Server
 # Update repos
+
 apt update
 
 # Install Docker
@@ -30,6 +30,7 @@ docker run \
   --storage-driver overlay2
 
 # Build a new docker image from Dockerfile in the same repo and assign the image a meaningful name
+
 docker build -t my-jenkins-itmo:2.387.2-1 .
 
 # Run your own my-jenkins-itmo:2.387.2-1 image as a container in Docker
@@ -47,3 +48,9 @@ docker run \
   --volume jenkins-data:/var/jenkins_home \
   --volume jenkins-docker-certs:/certs/client:ro \
   my-jenkins-itmo:2.387.2-1
+
+# Install cosign using binary
+
+wget "https://github.com/sigstore/cosign/releases/download/v2.0.0/cosign-linux-amd64"
+mv cosign-linux-amd64 /usr/local/bin/cosign
+chmod +x /usr/local/bin/cosign

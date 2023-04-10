@@ -4,6 +4,8 @@ pipeline {
         GITHUB_TOKEN=credentials('my-github-token')
         IMAGE_NAME='val7117/vkr-project'
         IMAGE_VERSION='0.0.1'
+        COSIGN_PASSWORD=credentials('my-cosign-password')
+        COSIGN_PRIVATE_KEY=credentials('my-cosign-private-key')
     }
     stages {
         stage('Cleaning up') {
@@ -30,6 +32,9 @@ pipeline {
             steps {
                 sh 'docker push ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
             }
+        }
+        stage('Sign Docker image') {
+            sh 'cosign sign --key $COSIGN_PRIVATE_KEY ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
         }
     }
     post {
