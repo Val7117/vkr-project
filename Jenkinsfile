@@ -38,6 +38,11 @@ pipeline {
                 sh 'cosign sign --key $COSIGN_PRIVATE_KEY ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
             }
         }
+        stage('Verify Docker image') {
+            steps {
+                sh 'cosign verify --key $COSIGN_PUBLIC_KEY ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
+            }
+        }
     }
     post {
         always {
