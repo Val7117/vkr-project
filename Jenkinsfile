@@ -9,11 +9,11 @@ pipeline {
         COSIGN_PUBLIC_KEY=credentials('my-cosign-public-key')
     }
     stages {
-        stage('Cleaning up') {
-            steps {
-                sh 'docker system prune -a --volumes --force'
-            }
-        }
+        // stage('Cleaning up') {
+        //     steps {
+        //         sh 'docker system prune -a --volumes --force'
+        //     }
+        // }
         stage('Building Docker image') {
             steps {
                 sh 'docker build -t $IMAGE_NAME:$IMAGE_VERSION .'
