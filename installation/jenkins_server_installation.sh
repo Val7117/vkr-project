@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Installation of Jenkins
+
 curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
   /usr/share/keyrings/jenkins-keyring.asc > /dev/null
 echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
@@ -16,9 +18,20 @@ sudo apt-get install -y jenkins
 
 # Installation of Java
 
-sudo apt update
 sudo apt install -y openjdk-11-jre
 java -version
+
+# Installation of Git
+
+sudo apt install git
+
+# Installation of Docker
+
+sudo apt install docker.io
+
+# Add jenkins user to docker group
+
+usermod -aG docker jenkins
 
 # Start Jenkins
 
