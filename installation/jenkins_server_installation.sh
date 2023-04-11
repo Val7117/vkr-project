@@ -23,11 +23,11 @@ java -version
 
 # Installation of Git
 
-sudo apt install git
+sudo apt install -y git
 
 # Installation of Docker
 
-sudo apt install docker.io
+sudo apt install -y docker.io
 
 # Add jenkins user to docker group
 
