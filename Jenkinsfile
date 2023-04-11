@@ -41,7 +41,7 @@ pipeline {
         }
         stage('Verify Docker image') {
             steps {
-                sh 'cosign verify --key $COSIGN_PUBLIC_KEY ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
+                sh 'cosign verify --key -y $COSIGN_PUBLIC_KEY ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
             }
         }
     }
