@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Pulling from github ') {
             steps {
-                sh 'docker pull ghcr.io/val7117/vkr-project:sha256-04afc38518ac19283dc0fde598daf526a777dd1620afc46d7464c5a369e838bc'
+                sh 'docker pull ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
             }
         }
         stage('Verify Docker image') {
