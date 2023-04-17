@@ -29,6 +29,10 @@ sudo apt install -y git
 
 sudo apt install -y docker.io
 
+# Install grype
+
+curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
+
 # Add jenkins user to docker group
 
 usermod -aG docker jenkins
