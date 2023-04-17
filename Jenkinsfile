@@ -19,6 +19,11 @@ pipeline {
                 sh 'docker build -t $IMAGE_NAME:$IMAGE_VERSION .'
             }
         }
+        stage('Scan') {
+            steps {
+                sh 'grype $IMAGE_NAME:$IMAGE_VERSION --scope AllLayers'
+            }
+        }
         stage('Login to GitHub Container Registry') {
             steps {
                 sh 'echo $GITHUB_TOKEN_PSW | docker login ghcr.io -u $GITHUB_TOKEN_USR --password-stdin'
