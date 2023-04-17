@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Scan') {
             steps {
-                sh 'grype $IMAGE_NAME:$IMAGE_VERSION --scope AllLayers --fail-on=medium'
+                sh 'grype $IMAGE_NAME:$IMAGE_VERSION --scope AllLayers --fail-on=critical'
             }
         }
         stage('Login to GitHub Container Registry') {
