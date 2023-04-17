@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Tag Docker image') {
             steps {
-                sh 'docker tag $IMAGE_NAME:$IMAGE_VERSION ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
+                sh 'docker tag $IMAGE_NAME:$IMAGE_VERSION ghcr.io/$IMAGE_NAME:$IMAGE_VERSION-$BUILD_NUMBER'
             }
         }
         stage('Push Docker image') {
