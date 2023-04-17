@@ -36,17 +36,17 @@ pipeline {
         }
         stage('Push Docker image') {
             steps {
-                sh 'docker push ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
+                sh 'docker push ghcr.io/$IMAGE_NAME:$IMAGE_VERSION-$BUILD_NUMBER'
             }
         }
         stage('Sign Docker image') {
             steps {
-                sh 'cosign sign --yes --key $COSIGN_PRIVATE_KEY ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
+                sh 'cosign sign --yes --key $COSIGN_PRIVATE_KEY ghcr.io/$IMAGE_NAME:$IMAGE_VERSION-$BUILD_NUMBER'
             }
         }
         stage('Verify Docker image') {
             steps {
-                sh 'cosign verify --key $COSIGN_PUBLIC_KEY ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
+                sh 'cosign verify --key $COSIGN_PUBLIC_KEY ghcr.io/$IMAGE_NAME:$IMAGE_VERSION-$BUILD_NUMBER'
             }
         }
     }
