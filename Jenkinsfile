@@ -34,14 +34,14 @@ pipeline {
                 sh 'docker tag $IMAGE_NAME:$IMAGE_VERSION ghcr.io/$IMAGE_NAME:$IMAGE_VERSION-$BUILD_NUMBER'
             }
         }
-        stage('Sign Docker image') {
-            steps {
-                sh 'cosign sign --yes --key $COSIGN_PRIVATE_KEY ghcr.io/$IMAGE_NAME:$IMAGE_VERSION-$BUILD_NUMBER'
-            }
-        }
         stage('Push Docker image') {
             steps {
                 sh 'docker push ghcr.io/$IMAGE_NAME:$IMAGE_VERSION-$BUILD_NUMBER'
+            }
+        }
+        stage('Sign Docker image') {
+            steps {
+                sh 'cosign sign --yes --key $COSIGN_PRIVATE_KEY ghcr.io/$IMAGE_NAME:$IMAGE_VERSION-$BUILD_NUMBER'
             }
         }
         stage('Verify Docker image') {
