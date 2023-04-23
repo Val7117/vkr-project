@@ -3,7 +3,7 @@ pipeline {
     environment {
         GITHUB_TOKEN=credentials('my-github-token')
         IMAGE_NAME='val7117/vkr-project'
-        IMAGE_VERSION='0.0.1'
+        IMAGE_VERSION='latest'
         COSIGN_PUBLIC_KEY=credentials('my-cosign-public-key')
     }
     stages {
@@ -17,11 +17,6 @@ pipeline {
                 sh 'cosign verify --key $COSIGN_PUBLIC_KEY ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
             }
         }
-        // stage('Pulling from github ') {
-        //     steps {
-        //         sh 'docker pull ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
-        //     }
-        // }
         stage('SSH to private Docker registry and pulling image') {
             steps {
                 script {
