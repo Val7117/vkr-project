@@ -8,6 +8,7 @@ pipeline {
     }
     parameters {
         string(name: 'IMAGE_NAME', description: 'My image name')
+        string(name: 'IMAGE_VERSION', description: 'My image version')
     }
     stages {
          stage('Login to GitHub Container Registry') {
@@ -17,7 +18,7 @@ pipeline {
         }
         stage('Verify Docker image') {
             steps {
-                sh "cosign verify --key ${COSIGN_PUBLIC_KEY} ghcr.io/${params.IMAGE_NAME}:${IMAGE_VERSION}"
+                sh "cosign verify --key ${COSIGN_PUBLIC_KEY} ghcr.io/${params.IMAGE_NAME}:${params.IMAGE_VERSION}"
             }
         }
         stage('SSH to private Docker registry and pulling image') {

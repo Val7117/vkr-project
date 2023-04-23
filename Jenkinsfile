@@ -45,7 +45,8 @@ pipeline {
             }
             post {
                 success {
-                    build job: 'verify-push-to-private', parameters: [string(name: 'IMAGE_NAME', value: "${env.IMAGE_NAME}")]
+                    build job: 'verify-push-to-private', parameters: [string(name: 'IMAGE_NAME', value: "${env.IMAGE_NAME}"),
+                    string(name: 'IMAGE_VERSION', value: "${env.IMAGE_VERSION}")]
                 }
             }
         }
