@@ -45,10 +45,10 @@ pipeline {
             steps {
                 sh "cosign sign --yes --key ${COSIGN_PRIVATE_KEY} ${GHCR_IMAGE_NAME}"
             }
-            post {
-                success {
-                    build job: 'verify-push-to-private', parameters: [string(name: 'GHCR_IMAGE_NAME', value: "${GHCR_IMAGE_NAME}")]
-                }
+        }
+        stage('Start second pipeline') {
+            steps{
+                build job: 'verify-push-to-private', parameters: [string(name: 'GHCR_IMAGE_NAME', value: "${GHCR_IMAGE_NAME}")]
             }
         }
     }
