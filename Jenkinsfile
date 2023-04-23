@@ -43,7 +43,7 @@ pipeline {
         }
         stage('Sign Docker image') {
             steps {
-                sh "cosign sign --yes --key ${COSIGN_PRIVATE_KEY} $G{HCR_IMAGE_NAME}"s
+                sh "cosign sign --yes --key ${COSIGN_PRIVATE_KEY} ${GHCR_IMAGE_NAME}"
             }
             post {
                 success {
