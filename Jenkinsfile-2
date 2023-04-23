@@ -24,9 +24,9 @@ pipeline {
         }
         stage('Connect to private Docker registry using SSH') {
             steps {
-                sshagent(credentials: ['docker-registry-ssh']) [
+                sshagent(credentials: ['docker-registry-ssh']) {
                     sshCommand remote: 'root@164.92.201.106', command: 'docker pull ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
-                ]
+                }
             }
         }
     }
