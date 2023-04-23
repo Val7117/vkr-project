@@ -24,10 +24,10 @@ pipeline {
         }
         stage('Connect to private Docker registry using SSH') {
             steps {
-                    // Start the SSH agent and add the private key
-                    sshagent(credentials: ['docker-registry-ssh']) {
-                    // SSH command to copy files to the remote machine
-                    sshCommand remote: 'root@209.38.246.237', command: 'docker pull ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
+                // Start the SSH agent and add the private key
+                sshagent(credentials: ['docker-registry-ssh']) {
+                // SSH command to copy files to the remote machine
+                sshCommand remote: 'root@164.92.201.106', command: 'docker pull ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
                 }
             }
         }
