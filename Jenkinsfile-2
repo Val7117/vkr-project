@@ -2,13 +2,10 @@ pipeline {
     agent any
     environment {
         GITHUB_TOKEN=credentials('my-github-token')
-        // IMAGE_NAME='val7117/vkr-project'
-        // IMAGE_VERSION='0.0.1'
         COSIGN_PUBLIC_KEY=credentials('my-cosign-public-key')
     }
     parameters {
-        string(name: 'IMAGE_NAME', description: 'My image name')
-        string(name: 'IMAGE_VERSION', description: 'My image version')
+        string(name: 'GHCR_IMAGE_NAME', description: 'My GHCR image name')
     }
     stages {
          stage('Login to GitHub Container Registry') {
@@ -18,14 +15,14 @@ pipeline {
         }
         stage('Verify Docker image') {
             steps {
-                sh "cosign verify --key ${COSIGN_PUBLIC_KEY} ghcr.io/${params.IMAGE_NAME}:${params.IMAGE_VERSION}"
+                sh "cosign verify --key ${COSIGN_PUBLIC_KEY} ${GHCR_IMAGE_NAME}"
             }
         }
         stage('SSH to private Docker registry and pulling image') {
             steps {
                 script {
                     echo 'SSH to private docker repository'
-                    def shellCmd = "docker pull ghcr.io/${params.IMAGE_NAME}:${params.IMAGE_VERSION}"
+                    def shellCmd = "docker pull ${GHCR_IMAGE_NAME}"
                     def instance = "root@164.92.201.106"
 
                     sshagent(['docker-registry-ssh']) {
