@@ -4,7 +4,7 @@ pipeline {
         NAME='val7117/vkr-project'
         VERSION='0.0.1'
         IMAGE_NAME='$NAME:$VERSION-$BUILD_NUMBER'
-        GHCR_IMAGE_NAME='ghcr.io/$NAME:$VERSION-$BUILD_NUMBER'
+        GHCR_IMAGE_NAME='ghcr.io/$IMAGE_NAME'
         GITHUB_TOKEN=credentials('my-github-token')
         COSIGN_PASSWORD=credentials('my-cosign-password')
         COSIGN_PRIVATE_KEY=credentials('my-cosign-private-key')
@@ -47,7 +47,7 @@ pipeline {
             }
             post {
                 success {
-                    build job: 'verify-push-to-private', parameters: [string(name: 'GHCR_IMAGE_NAME', value: $GHCR_IMAGE_NAME)]
+                    build job: 'verify-push-to-private', parameters: [string(name: 'GHCR_IMAGE_NAME', value: "${GHCR_IMAGE_NAME}")]
                 }
             }
         }
