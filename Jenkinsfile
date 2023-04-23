@@ -47,7 +47,7 @@ pipeline {
             }
             post {
                 success {
-                    build job: 'verify-push-to-private', parameters: [string(name: 'GHCR_IMAGE_NAME', value: "${env.GHCR_IMAGE_NAME}")]
+                    build job: 'verify-push-to-private', parameters: [string(name: 'GHCR_IMAGE_NAME', value: $GHCR_IMAGE_NAME)]
                 }
             }
         }
