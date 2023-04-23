@@ -12,17 +12,17 @@ pipeline {
                 sh 'echo $GITHUB_TOKEN_PSW | docker login ghcr.io -u $GITHUB_TOKEN_USR --password-stdin'
             }
         }
-        stage('Pulling from github ') {
-            steps {
-                sh 'docker pull ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
-            }
-        }
         stage('Verify Docker image') {
             steps {
                 sh 'cosign verify --key $COSIGN_PUBLIC_KEY ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
             }
         }
-        stage('Connect to private Docker registry using SSH') {
+        // stage('Pulling from github ') {
+        //     steps {
+        //         sh 'docker pull ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
+        //     }
+        // }
+        stage('SSH to private Docker registry and pulling image') {
             steps {
                 script {
                     echo 'SSH to private docker repository'
