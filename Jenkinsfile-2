@@ -23,15 +23,15 @@ pipeline {
             }
         }
         stage('Connect to private Docker registry using SSH') {
-            def remote = [:]
-            remote.name = 'root'
-            remote.host = '164.92.201.106'
-            remote.user = 'root'
-            remote.password = ''
-            remote.allowAnyHosts = true
             steps {
-                sshagent(['docker-registry-ssh']) {
-                    sshCommand remote: remote, command: 'docker pull ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
+                script {
+                    echo "SSH to private docker repository"
+                    def shellCmd = "docker pull ghcr.io/$IMAGE_NAME:$IMAGE_VERSION"
+                    def instance = "root@164.92.201.106"
+
+                    sshagent(['docker-registry-ssh']) {
+                        sh "ssh -o StrictHostKeyChecking=no ${instance} ${shellCmd}"
+                    }
                 }
             }
         }
