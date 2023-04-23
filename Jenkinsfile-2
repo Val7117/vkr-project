@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Verify Docker image') {
             steps {
-                sh "cosign verify --key ${COSIGN_PUBLIC_KEY} ${env.GHCR_IMAGE_NAME}"
+                sh "cosign verify --key ${COSIGN_PUBLIC_KEY} ${GHCR_IMAGE_NAME}"
             }
         }
         stage('SSH to private Docker registry and pulling image') {
