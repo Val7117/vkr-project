@@ -17,13 +17,13 @@ pipeline {
         }
         stage('Verify Docker image') {
             steps {
-                sh "cosign verify --key ${COSIGN_PUBLIC_KEY} ${GHCR_IMAGE_NAME}"
+                sh "cosign verify --key ${COSIGN_PUBLIC_KEY} ${env.GHCR_IMAGE_NAME}"
             }
         }
         stage('SSH to private Docker registry and pulling image') {
             steps {
                 script {
-                    def shellCmd = "docker pull ${GHCR_IMAGE_NAME}"
+                    def shellCmd = "docker pull ${env.GHCR_IMAGE_NAME}"
                     def instance = "${USER_PDR}@${IP_PDR}"
 
                     sshagent(['docker-registry-ssh']) {
