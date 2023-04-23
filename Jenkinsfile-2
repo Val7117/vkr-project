@@ -1,6 +1,8 @@
 pipeline {
     agent any
     environment {
+        IP_PDR='164.92.201.106'
+        USER_PDR='root'
         GITHUB_TOKEN=credentials('my-github-token')
         COSIGN_PUBLIC_KEY=credentials('my-cosign-public-key')
     }
@@ -10,7 +12,7 @@ pipeline {
     stages {
          stage('Login to GitHub Container Registry') {
             steps {
-                sh 'echo $GITHUB_TOKEN_PSW | docker login ghcr.io -u $GITHUB_TOKEN_USR --password-stdin'
+                sh "echo ${GITHUB_TOKEN_PSW} | docker login ghcr.io -u ${GITHUB_TOKEN_USR} --password-stdin"
             }
         }
         stage('Verify Docker image') {
@@ -21,9 +23,8 @@ pipeline {
         stage('SSH to private Docker registry and pulling image') {
             steps {
                 script {
-                    echo 'SSH to private docker repository'
                     def shellCmd = "docker pull ${GHCR_IMAGE_NAME}"
-                    def instance = "root@164.92.201.106"
+                    def instance = "${USER_PDR}@${IP_PDR}"
 
                     sshagent(['docker-registry-ssh']) {
                         sh "ssh -o StrictHostKeyChecking=no ${instance} ${shellCmd}"
