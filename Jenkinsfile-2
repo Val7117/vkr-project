@@ -25,12 +25,12 @@ pipeline {
         stage('Connect to private Docker registry using SSH') {
             steps {
                 script {
-                    echo "SSH to private docker repository"
-                    def shellCmd = "docker pull ghcr.io/$IMAGE_NAME:$IMAGE_VERSION"
-                    def instance = "root@164.92.201.106"
+                    echo 'SSH to private docker repository'
+                    def shellCmd = 'docker pull ghcr.io/$IMAGE_NAME:$IMAGE_VERSION'
+                    def instance = 'root@164.92.201.106'
 
                     sshagent(['docker-registry-ssh']) {
-                        sh "ssh -o StrictHostKeyChecking=no ${instance} ${shellCmd}"
+                        sh 'ssh -o StrictHostKeyChecking=no ${instance} ${shellCmd}'
                     }
                 }
             }
