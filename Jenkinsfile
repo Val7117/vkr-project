@@ -43,6 +43,11 @@ pipeline {
             steps {
                 sh 'cosign sign --yes --key $COSIGN_PRIVATE_KEY ghcr.io/$IMAGE_NAME:$IMAGE_VERSION-$BUILD_NUMBER'
             }
+            post {
+                success {
+                    build job: 'verify-push-to-private'
+                }
+            }
         }
     }
     post {
