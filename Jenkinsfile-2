@@ -6,9 +6,9 @@ pipeline {
         GITHUB_TOKEN=credentials('my-github-token')
         COSIGN_PUBLIC_KEY=credentials('my-cosign-public-key')
     }
-    // parameters {
-    //     string(name: 'GHCR_IMAGE_NAME', description: 'My GHCR image name')
-    // }
+    parameters {
+        string(name: 'GHCR_IMAGE_NAME', description: 'My GHCR image name')
+    }
     stages {
          stage('Login to GitHub Container Registry') {
             steps {
