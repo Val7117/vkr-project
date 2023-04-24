@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-        IP_PDR='164.92.201.106'
-        USER_PDR='root'
+        IP_PDR=credentials('my-ip-pdr')
+        USER_PDR=credentials('my-username-pdr')
         GITHUB_TOKEN=credentials('my-github-token')
         COSIGN_PUBLIC_KEY=credentials('my-cosign-public-key')
     }
