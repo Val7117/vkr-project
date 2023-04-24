@@ -29,7 +29,7 @@ pipeline {
                     def instance = "${USER_PDR}@${IP_PDR}"
 
                     sshagent(['docker-registry-ssh']) {
-                        sh "ssh -o StrictHostKeyChecking=no ${instance} ${shellCmd1} ${shellCmd2} ${shellCmd3}"
+                        sh "ssh -o StrictHostKeyChecking=no ${instance} ${shellCmd1}; ${shellCmd2}; ${shellCmd3};"
                     }
                 }
             }
