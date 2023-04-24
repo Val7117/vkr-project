@@ -1,4 +1,0 @@
-Quick start:
-1. Generate a keypair
-2. Sign a container image and store stat signature in the registry
-3. Find signatures for a container image, and verify them against a public key
