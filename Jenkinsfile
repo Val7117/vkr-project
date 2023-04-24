@@ -8,7 +8,6 @@ pipeline {
         GITHUB_TOKEN=credentials('my-github-token')
         COSIGN_PASSWORD=credentials('my-cosign-password')
         COSIGN_PRIVATE_KEY=credentials('my-cosign-private-key')
-        COSIGN_PUBLIC_KEY=credentials('my-cosign-public-key')
     }
     stages {
         stage('Cleaning up') {
