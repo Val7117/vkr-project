@@ -23,13 +23,11 @@ pipeline {
         stage('SSH to private Docker registry and pulling image') {
             steps {
                 script {
-                    def shellCmd1 = "docker pull ${env.GHCR_IMAGE_NAME}"
-                    def shellCmd2 = "docker tag ${env.GHCR_IMAGE_NAME} localhost:5000/${env.GHCR_IMAGE_NAME}"
-                    def shellCmd3 = "docker push localhost:5000/${env.GHCR_IMAGE_NAME}"
+                    def shellCmd = "docker pull ${env.GHCR_IMAGE_NAME}"
                     def instance = "${USER_PDR}@${IP_PDR}"
 
                     sshagent(['docker-registry-ssh']) {
-                        sh "ssh -o StrictHostKeyChecking=no ${instance} ${shellCmd1}; ${shellCmd2}; ${shellCmd3}"
+                        sh "ssh -o StrictHostKeyChecking=no ${instance} ${shellCmd}"
                     }
                 }
             }
