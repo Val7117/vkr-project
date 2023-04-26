@@ -1,7 +1,10 @@
-FROM alpine:edge
+FROM python:3.11-slim-buster
 
-RUN echo "Hello, " >> /etc/world.txt
-RUN echo "ITMO!" >> /etc/world.txt
+WORKDIR /app
 
-# Add label for Git Hub container registry
-LABEL org.opencontainers.image.source https://github.com/val7117/vkr-project
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
+
+COPY . .
+
+CMD ["python3", "-m" , "flask", "run", "--host=0.0.0.0"]

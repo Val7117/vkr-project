@@ -1,1 +1,3 @@
 cosign
+.venv
+__pycache__
