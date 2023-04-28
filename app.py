@@ -1,6 +1,6 @@
-from flask import Flask
-app = Flask(__name__)
+import time
+import sys
 
-@app.route('/')
-def hello_itmo():
-    return 'Hello, ITMO!'
+while True:
+    print('Hello, world!', file=sys.stderr)
+    time.sleep(5)
