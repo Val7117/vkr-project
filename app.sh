@@ -2,6 +2,6 @@
 
 while true
 do
-  echo "Hello, ITMO!" >&2
+  echo "Hello, ITMO!"
   sleep 5
-done
+done 2>&1
