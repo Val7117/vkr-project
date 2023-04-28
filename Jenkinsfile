@@ -2,8 +2,8 @@ pipeline {
     agent any
     environment {
         NAME='val7117/vkr-project'
-        VERSION='0.0.1'
-        IMAGE_NAME="${NAME}:${VERSION}-${BUILD_NUMBER}"
+        VERSION='1.0'
+        IMAGE_NAME="${NAME}:${VERSION}.${BUILD_NUMBER}"
         GHCR_IMAGE_NAME="ghcr.io/${IMAGE_NAME}"
         GITHUB_TOKEN=credentials('my-github-token')
         COSIGN_PASSWORD=credentials('my-cosign-password')
