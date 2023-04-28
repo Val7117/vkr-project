@@ -43,14 +43,6 @@ curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh 
 
 apt install -y jq
 
-# Установка Python3.8 и pip3
-
-sudo apt install -y python3.8
-python3.8 --version
-
-curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11 
-pip3 --version
-
 # Добавление пользователя jenkins в группу docker
 
 usermod -aG docker jenkins
