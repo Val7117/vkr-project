@@ -1,9 +1,9 @@
-FROM python:3.11-slim-buster
+FROM alpine:edge
 
 WORKDIR /app
 
-COPY app.py .
+COPY script.sh .
 
 LABEL org.opencontainers.image.source https://github.com/val7117/vkr-project
 
-CMD ["python", "app.py"]
+CMD ["sh", "script.sh"]
