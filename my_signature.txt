@@ -1,0 +1,30 @@
+Verification for ghcr.io/val7117/vkr-project:1.0.11 --
+The following checks were performed on each of these signatures:
+  - The cosign claims were validated
+  - Existence of the claims in the transparency log was verified offline
+  - The signatures were verified against the specified public key
+[
+  {
+    "critical": {
+      "identity": {
+        "docker-reference": "ghcr.io/val7117/vkr-project"
+      },
+      "image": {
+        "docker-manifest-digest": "sha256:fa373694c6d394cd1f469054e6177c87a698eb48b5b6835f0a0005c181d3c715"
+      },
+      "type": "cosign container image signature"
+    },
+    "optional": {
+      "Bundle": {
+        "SignedEntryTimestamp": "MEUCIQDE8oTQcPkyoo+DpRU616U3rGSJducfMvauC4elSexRnAIgdqKVVProhtY6eVGDl2DQ+CvSCotWO3ZgWd8SfxVD44M=",
+        "Payload": {
+          "body": "eyJhcGlWZXJzaW9uIjoiMC4wLjEiLCJraW5kIjoiaGFzaGVkcmVrb3JkIiwic3BlYyI6eyJkYXRhIjp7Imhhc2giOnsiYWxnb3JpdGhtIjoic2hhMjU2IiwidmFsdWUiOiI4YTUyZTk0ZjZmOTM4NzNhODhhMTJlMmFlOTRjMjJiNjJjMDk2NmYyOTA2NjNlNTBiNTc2ZDk4MjkyYjk3NjZjIn19LCJzaWduYXR1cmUiOnsiY29udGVudCI6Ik1FVUNJUUR3d092U2xDNDJtSGtUdG5Od0syR3RpWTVOdzFBcklaUnp0Z3VkcXRMbVhRSWdScVl4RHE5L1ZIUXZHNmMwTG5UVjFHOXpnTzhRVFQ2MWowVzFMb1hxbmtVPSIsInB1YmxpY0tleSI6eyJjb250ZW50IjoiTFMwdExTMUNSVWRKVGlCUVZVSk1TVU1nUzBWWkxTMHRMUzBLVFVacmQwVjNXVWhMYjFwSmVtb3dRMEZSV1VsTGIxcEplbW93UkVGUlkwUlJaMEZGYzFkbVpreHRTMmN2VlhCd05FTnNhV1l3VUdkWVIxQTFZV3RDWWdvME0zcFZkVzF1Y0U1b1FVY3ZSRWNyTmpJek5UQTRZM2RPTUZCcVdHZHZSV1ZpV0ROYWMzTk5VMGhTTVRnMGIzRkJkMjl4VURrMVdrTkJQVDBLTFMwdExTMUZUa1FnVUZWQ1RFbERJRXRGV1MwdExTMHRDZz09In19fX0=",
+          "integratedTime": 1682676704,
+          "logIndex": 19172050,
+          "logID": "c0d23d6ad406973f9559f3ba2d1ca01f84147d8ffc5b8445c224f98b9591801d"
+        }
+      }
+    }
+  }
+]
+
